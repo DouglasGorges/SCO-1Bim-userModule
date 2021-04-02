@@ -1,1 +1,1 @@
-Atividade da disciplina Sistemas Cirporativos - Professor Leandro Escobar
+Atividade da disciplina Sistemas Corporativos - Professor Leandro Escobar
