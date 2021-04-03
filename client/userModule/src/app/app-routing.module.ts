@@ -7,11 +7,33 @@ import { HomeComponent } from './views/home/home.component';
 const routes: Routes = [
   {
     path: '', 
-    component: HomeComponent
+    component: HomeComponent,
+    data: {
+      title: 'Início',
+      breadcrumb: [
+        {
+          label: 'Início',
+          url: ''
+        }
+      ]
+    }
   },
   {
     path: 'create/user', 
-    component: CreateUserComponent
+    component: CreateUserComponent,
+    data: {
+      title: 'page2', 
+      breadcrumb: [
+        {
+          label: 'Início',
+          url: '/'
+        },
+        {
+          label: 'Cadastro',
+          url: 'create/user'
+        }
+      ]
+    }
   }
 ];
 

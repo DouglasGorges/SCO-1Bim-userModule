@@ -36,6 +36,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.newUser.firstname)
     this.userService.create(this.newUser).subscribe((userCreated: User) => {
       this.alerts.setMessage('Usuário cadastrado com sucesso!','success');
       this.redirect();

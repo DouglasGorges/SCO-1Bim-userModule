@@ -1,34 +1,40 @@
-<p>
-    <mat-form-field appearance="outline">
-      <mat-label>Nome</mat-label>
-      <input matInput placeholder="Nome" type="text" [(ngModel)]="newUser.firstname" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field appearance="outline">
-      <mat-label>Sobrenome</mat-label>
-      <input matInput placeholder="Sobrenome" type="text" [(ngModel)]="newUser.lastname" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field appearance="outline">
-      <mat-label>CPF</mat-label>
-      <input matInput placeholder="CPF" type="text" [(ngModel)]="newUser.document" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field appearance="outline">
-      <mat-label>E-mail</mat-label>
-      <input matInput placeholder="E-Mail" type="email" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field appearance="outline">
-      <mat-label>Senha</mat-label>
-      <input matInput placeholder="Senha" type="password" [(ngModel)]="newUser.password" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-</p>
-<div>
-    <button mat-raised-button>Cancelar</button>
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Cadastrar</button>
+<div class="col-4 px-4 py-3">
+  <form class="px-4 py-3 border col-12" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Nome" type="text" [(ngModel)]="newUser.firstname" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput placeholder="Sobrenome" type="text" [(ngModel)]="newUser.lastname" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput placeholder="CPF" type="text" [(ngModel)]="newUser.document" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput placeholder="E-Mail" type="email" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Senha" type="password" [(ngModel)]="newUser.password" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+      </p>
+      <div>
+          <button mat-raised-button routerLink="/">Cancelar</button>
+          <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+      </div>
+    </div>
+  </form>
 </div>

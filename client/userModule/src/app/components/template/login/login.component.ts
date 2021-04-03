@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'angular-alert-module';
 import { first } from 'rxjs/operators';
 
-import { AccountService} from '../../../services/account.service';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-        username: ['', Validators.required],
+        email: ['', Validators.required],
         password: ['', Validators.required]
     });
   }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     }
     
     this.loading = true;
-    this.accountService.login(this.f.username.value, this.f.password.value)
+    this.accountService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
         .subscribe({
             next: () => {

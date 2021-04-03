@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { error } from '@angular/compiler/src/util';
+//import { error } from '@angular/compiler/src/util';
 
 import { environment } from '../../environments/environment';
 import { User } from '../models/User';
@@ -18,7 +18,7 @@ export class AccountService {
         private http: HttpClient
         ) {
             var parsed = JSON.parse(localStorage.getItem('user') || '{}');
-            if(parsed != null){
+            if(parsed){
                 this.user = parsed;
             }
         }
@@ -28,20 +28,20 @@ export class AccountService {
     }
 
     public get isLogged(): boolean {
-        return this.user != null;
+        return Object.keys(this.user).length > 0;
     }
 
     login(email: string, password: string): Observable<User> {
         return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { email, password })
         .pipe(map(user => {
-            if(user.idActive){
+            //if(user.idActive){
                 localStorage.setItem('user', JSON.stringify(user));
                 this.user = user;
                 location.reload();
                 return user;
-            } else {
-                return error("Usuário inativo.");
-            }
+           // } else {
+                //return error("Usuário inativo.");
+           // }
         }));
     }
 

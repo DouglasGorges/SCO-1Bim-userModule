@@ -5,6 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { AlertsModule } from 'angular-alert-module';
+import { MatBreadcrumbModule } from "mat-breadcrumb";
 
 import { AppComponent } from './app.component';
 import { CreateUserComponent } from './views/create-user/create-user.component';
@@ -39,8 +40,7 @@ registerLocaleData(localePt);
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -75,7 +75,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LayoutModule,
     MatSnackBarModule,
     AlertsModule.forRoot(),
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    MatBreadcrumbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
