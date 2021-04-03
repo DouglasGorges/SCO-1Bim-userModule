@@ -1,4 +1,4 @@
-import { json, Request, Response } from 'express'
+import { Request, Response } from 'express'
 
 import db from '../database/connection'
 
@@ -10,6 +10,7 @@ export default class ConnectionController {
   }
 
   async create(req: Request, res: Response) {
+
     const {
       firstname,
       lastname,
@@ -19,8 +20,24 @@ export default class ConnectionController {
       idActive
     } = req.body
 
+    const trx = await db.transaction()
+
     try {
 
+      const insertUsers = await trx('users').insert({
+        firstname,
+        lastname,
+        document,
+        email,
+        password,
+        idActive
+      })
+
+      console.log(insertUsers)
+
+      await trx.commit()
+
+      res.status(201).send()
     } catch (err) {
       await trx.rollback()
 
