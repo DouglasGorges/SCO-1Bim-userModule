@@ -6,6 +6,7 @@ import { AlertsService } from 'angular-alert-module';
 
 import { User } from './../../models/User';
 import { UserService } from '../../services/user.service';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-create-user',
@@ -15,37 +16,59 @@ import { UserService } from '../../services/user.service';
 export class CreateUserComponent implements OnInit {
   loading = false;
   submitted = false;
+  form: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private alerts: AlertsService
+    private alerts: AlertsService,
+    private accountService: AccountService,
   ) { }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      document: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
+  // getter para acesso facil aos campos do form
+  get f() { return this.form.controls; }
+
   newUser: User ={
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     document: "",
     email: "",
     password: "",
     idActive: true,
-    token: ""
+    token: "",
+    permissions: []
   }
 
   onSubmit() {
-    console.log(this.newUser.firstname)
+    this.loading = true;
+
+    if (this.form.invalid) {
+      this.loading = false;
+      return;
+    }
+
     this.userService.create(this.newUser).subscribe((userCreated: User) => {
       this.alerts.setMessage('Usuário cadastrado com sucesso!','success');
-      this.redirect();
     });
+    
+    this.accountService.login(this.f.email.value, this.f.password.value)
+    this.redirect();
   }
 
   async redirect(){
     await this.delay(2000)
-    this.router.navigate(['list/student']);
+    this.router.navigate(['/']);
   }
 
   delay(ms: number) {

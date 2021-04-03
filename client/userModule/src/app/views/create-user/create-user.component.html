@@ -1,39 +1,39 @@
 <div class="col-4 px-4 py-3">
-  <form class="px-4 py-3 border col-12" (ngSubmit)="onSubmit()">
+  <form class="px-4 py-3 border col-12" [formGroup]="form"  (ngSubmit)="onSubmit()">
     <div class="form-group">
       <p>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class=" col-12">
             <mat-label>Nome</mat-label>
-            <input matInput placeholder="Nome" type="text" [(ngModel)]="newUser.firstname" [ngModelOptions]="{standalone: true}">
+            <input class="form-control" matInput placeholder="Nome" type="text" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
           </mat-form-field>
       </p>
       <p>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class=" col-12">
             <mat-label>Sobrenome</mat-label>
-            <input matInput placeholder="Sobrenome" type="text" [(ngModel)]="newUser.lastname" [ngModelOptions]="{standalone: true}">
+            <input class="form-control" matInput placeholder="Sobrenome" type="text" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
           </mat-form-field>
       </p>
       <p>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class=" col-12">
             <mat-label>CPF</mat-label>
-            <input matInput placeholder="CPF" type="text" [(ngModel)]="newUser.document" [ngModelOptions]="{standalone: true}">
+            <input class="form-control" matInput placeholder="CPF" type="text" formControlName="document" [ngClass]="{ 'is-invalid': submitted && f.document.errors }"/>
           </mat-form-field>
       </p>
       <p>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class=" col-12">
             <mat-label>E-mail</mat-label>
-            <input matInput placeholder="E-Mail" type="email" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}">
+            <input class="form-control" matInput placeholder="E-Mail" type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
           </mat-form-field>
       </p>
       <p>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class=" col-12">
             <mat-label>Senha</mat-label>
-            <input matInput placeholder="Senha" type="password" [(ngModel)]="newUser.password" [ngModelOptions]="{standalone: true}">
+            <input class="form-control" matInput placeholder="Senha" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
           </mat-form-field>
       </p>
-      <div>
+      <div class=" col-12">
           <button mat-raised-button routerLink="/">Cancelar</button>
-          <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+          <button mat-raised-button color="primary" type="submit" style="float: right;"><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Cadastrar</button>
       </div>
     </div>
   </form>

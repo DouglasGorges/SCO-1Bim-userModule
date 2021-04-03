@@ -2,3 +2,13 @@
     color: #fff;
     text-decoration: none;
 }
+
+.flexbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+a:hover {
+    color: black;
+    text-decoration: underline;
+    }

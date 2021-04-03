@@ -16,31 +16,27 @@ export class UserService {
         private http: HttpClient
         ){}
 
-    listStudents() {
-        return this.http.get<User[]>(`${environment.apiUrl}/lista/usuario/${"Aluno"}`);
-    }
-
-    listTeachers() {
-        return this.http.get<User[]>(`${environment.apiUrl}/lista/usuario/${"Professor"}`);
+    listUsers() {
+        return this.http.get<User[]>(`${environment.apiUrl}/list/users`);
     }
 
     findById(id: String){
-        return this.http.get<User>(`${environment.apiUrl}/lista/usuario//${id}`);
+        return this.http.get<User>(`${environment.apiUrl}/list/user//${id}`);
     }
 
     findByDocument(document: String){
-        return this.http.get<User>(`${environment.apiUrl}/lista/usuario//${document}`);
+        return this.http.get<User>(`${environment.apiUrl}/lista/user//${document}`);
     }
 
     create(user: User): Observable<User>{
-        return this.http.post<User>(`${environment.apiUrl}/cadastro/usuario`, user);
+        return this.http.post<User>(`${environment.apiUrl}/create/user`, user);
     }
 
     update(user: User,  id: String): Observable<User>{
-        return this.http.post<User>(`${environment.apiUrl}/cadastro/usuario/update/${id}`, user);
+        return this.http.post<User>(`${environment.apiUrl}/create/user/update/${id}`, user);
     }
 
     delete(id: String): Observable<User>{
-        return this.http.delete<User>(`${environment.apiUrl}/cadastro/usuario/apagar//${id}`);
+        return this.http.delete<User>(`${environment.apiUrl}/create/user/delete//${id}`);
     }
 }

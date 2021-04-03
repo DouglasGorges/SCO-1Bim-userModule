@@ -1,5 +1,16 @@
-<mat-toolbar color="primary" class="header mat-elevation-z4">
+<mat-toolbar color="primary" class="header mat-elevation-z10 flexbox">
     <span>
       <a class="link-navegacao" routerLink="/">Sistema Corporativo</a>
     </span>
-  </mat-toolbar>
+    <div *ngIf="isLogged == true">
+      <div class="mx-auto px-4">
+          <p class="mb-0 f_400">Você está logado como {{user.firstName}} {{user.lastName}}</p>
+      </div>
+      <a mat-list-item (click)="logout()">
+        <span class="material-icons">
+            logout
+        </span>
+        Sair
+    </a>
+  </div>
+</mat-toolbar>
