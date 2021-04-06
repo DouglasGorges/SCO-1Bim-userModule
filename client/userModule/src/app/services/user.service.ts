@@ -21,11 +21,15 @@ export class UserService {
     }
 
     findById(id: String){
-        return this.http.get<User>(`${environment.apiUrl}/list/user//${id}`);
+        return this.http.get<User>(`${environment.apiUrl}/list/user/${id}`);
+    }
+
+    findByEmail(email: String){
+        return this.http.get<User>(`${environment.apiUrl}/list/user//${email}`);
     }
 
     findByDocument(document: String){
-        return this.http.get<User>(`${environment.apiUrl}/lista/user//${document}`);
+        return this.http.get<User>(`${environment.apiUrl}/lista/user///${document}`);
     }
 
     create(user: User): Observable<User>{
@@ -37,6 +41,6 @@ export class UserService {
     }
 
     delete(id: String): Observable<User>{
-        return this.http.delete<User>(`${environment.apiUrl}/create/user/delete//${id}`);
+        return this.http.delete<User>(`${environment.apiUrl}/create/user/delete/${id}`);
     }
 }
