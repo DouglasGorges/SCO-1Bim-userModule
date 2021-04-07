@@ -1,0 +1,141 @@
+//----------------------------------------------------------------------------------------------------------------
+### --- USER ---
+### CADASTRAR USER
+POST http://localhost:1234/create/user
+Content-Type: application/json
+
+{
+    "firstName": "Macaulay",
+    "lastName": "Culkin",
+    "document": "463.843.440-17",
+    "email": "eu@tu.com",
+    "password": "homeAlone",
+    "idActive": "Ativo",
+    "token": ""
+}
+
+### CADASTRAR VARIOS USER
+POST http://localhost:1234/create/user
+Content-Type: application/json
+
+[{
+    "firstName": "Ana",
+    "lastName": "Clara",
+    "document": "463.843.440-11",
+    "email": "eu@tu.com",
+    "password": "homeAlone",
+    "idActive": "Ativo",
+    "token": ""
+},
+{
+    "firstName": "Maria",
+    "lastName": "Alice",
+    "document": "463.843.440-22",
+    "email": "eu@tu.com",
+    "password": "homeAlone",
+    "idActive": "Ativo",
+    "token": ""
+},
+{
+    "firstName": "Flavia",
+    "lastName": "Andrade",
+    "document": "463.843.440-33",
+    "email": "eu@tu.com",
+    "password": "homeAlone",
+    "idActive": "Ativo",
+    "token": ""
+}]
+
+### LISTAR USER
+GET http://localhost:1234/list/users
+
+### BUSCAR USER POR Documento
+GET http://localhost:1234/list/user///463.843.440-17
+
+### BUSCAR USER POR ID
+GET http://localhost:1234/list/user/5f95ccfbfd82d14bc491ba48
+
+### UPDATE USER
+POST http://localhost:1234/create/user/update/5f95b5c1116f2b128c7abc98
+Content-Type: application/json
+
+{
+    "firstName": "FlaviaALTER",
+    "lastName": "AndradeALTER",
+    "document": "463.843.440-99",
+    "email": "eu@tu.com",
+    "password": "homeAlone",
+    "idActive": "Ativo",
+    "token": ""
+}
+
+### APAGAR USER by document
+GET http://localhost:1234/create/user/delete/463.843.440-17
+
+//----------------------------------------------------------------------------------------------------------------
+### --- PERMISSOES ---
+### CADASTRAR PERMISSAO
+POST http://localhost:1234/create/permission
+Content-Type: application/json
+
+{
+    "user": "",
+    "component": "5f95b5c1116f2b128c7abc98",
+    "userCreate": "5f95b5c1116f2b128c7abc9b"
+}
+
+### LISTAR PERMISSOES
+GET http://localhost:1234/list/permissions
+
+### BUSCAR PERMISSAO POR Usuario
+GET http://localhost:1234/list/permission/5f95b5c1116f2b128c7asc98
+
+### BUSCAR PERMISSAO POR Componente
+GET http://localhost:1234list/permission//5f95b657116f2b128c7abca0
+
+### UPDATE PERMISSAO
+POST http://localhost:1234/create/permission/update/5f95b657116f2b128c7abca0
+Content-Type: application/json
+
+{
+    "user": "",
+    "component": "5f95b5c1116f2b128c7abc98",
+    "userCreate": "5f95b5c1116f2b128c7abc9b"
+}
+
+### APAGAR PERMISSAO
+DELETE http://localhost:1234/create/permission/delete/5fa01f8b5af8c9c5a96b323e
+
+
+
+//----------------------------------------------------------------------------------------------------------------
+### --- COMPONENTE ---
+### CADASTRAR COMPONENTE
+POST http://localhost:1234/cadastro/mensalidade
+Content-Type: application/json
+
+{
+    "name": "Compo1",
+    "rota": "/create/user"
+}
+
+### LISTAR COMPONENTE
+GET http://localhost:1234/list/components
+
+### BUSCAR COMPONENTE POR ID
+GET http://localhost:1234/list/component/5f95b5c1116f2b128c7abc98
+
+### UPDATE COMPONENTE
+POST http://localhost:1234/create/component/update/5f95b5c1116f2b128c7abc98
+Content-Type: application/json
+
+{
+    "name": "Compo1-EDITED",
+    "rota": "/create/user"
+}
+
+### APAGAR COMPONENTE
+DELETE http://localhost:1234/create/component/delete/5fa07ec561796239b31a1992
+
+
+//----------------------------------------------------------------------------------------------------------------
