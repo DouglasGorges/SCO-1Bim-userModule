@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const permissionsSchema = require("./PermissionSchema.js");
+const permissionSchema = require("./PermissionSchema.js");
 
 const user = new mongoose.Schema({
     firstName: {
@@ -28,8 +28,8 @@ const user = new mongoose.Schema({
     },
 
     idActive: {
-        type: String,
-        enum: ["Ativo", "Inativo"]
+        type: Boolean,
+        require: [true]
     },
 
     token: {
@@ -38,7 +38,7 @@ const user = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now },
 
-    permissions: [permissionsSchema]
+    permissions: [permissionSchema]
 });
 
 module.exports = mongoose.model('User', user);

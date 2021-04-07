@@ -7,7 +7,7 @@ const PermissionController = require('../controllers/PermissionController');
 
 
 //Autenticacao
-router.post("/users/authenticate/", LoginController.authenticate);
+//router.post("/users/authenticate/", LoginController.authenticate);
 
 // Usuarios
 router.get("/list/users", UserController.get);
