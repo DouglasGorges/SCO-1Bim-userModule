@@ -10,7 +10,6 @@ export default class ConnectionController {
   }
 
   async create(req: Request, res: Response) {
-
     const {
       firstname,
       lastname,
