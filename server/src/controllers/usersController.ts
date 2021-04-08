@@ -19,6 +19,18 @@ export default class ConnectionController {
       idActive
     } = req.body
 
+    const userValidate = await db('users')
+      .where(function () {
+        this.where('email', email)
+      })
+      .orWhere('document', document)
+
+    if (userValidate.length > 0) {
+      return res.status(406).json({
+        message: 'User already exists!'
+      })
+    }
+
     const trx = await db.transaction()
 
     try {
@@ -32,7 +44,12 @@ export default class ConnectionController {
         idActive
       })
 
-      console.log(insertUsers)
+      const idUser = insertUsers[0]
+
+      const insertPermissions = await trx('permissions').insert({
+        idUser,
+        idComponent: 1
+      })
 
       await trx.commit()
 
