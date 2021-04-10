@@ -10,14 +10,7 @@ export default class ConnectionController {
   }
 
   async create(req: Request, res: Response) {
-    const {
-      firstname,
-      lastname,
-      document,
-      email,
-      password,
-      idActive
-    } = req.body
+    const { firstName, lastName, document, email, password, idActive } = req.body
 
     const userValidate = await db('users')
       .where(function () {
@@ -36,8 +29,8 @@ export default class ConnectionController {
     try {
 
       const insertUsers = await trx('users').insert({
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         document,
         email,
         password,
