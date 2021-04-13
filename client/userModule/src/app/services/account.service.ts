@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -48,7 +48,15 @@ export class AccountService {
     logout() {
         localStorage.removeItem('user');
         this.user = new User;
-        this.router.navigate(['']);
+        if(this.router.url == '/'){
+            this.refresh();
+        } else {
+            this.router.navigate(['']);
+        }
+    }
+
+    refresh(): void {
+        window.location.reload();
     }
 
     register(user: User) {

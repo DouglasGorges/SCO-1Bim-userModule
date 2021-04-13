@@ -58,12 +58,23 @@ export class CreateUserComponent implements OnInit {
       return;
     }
 
+    this.carregarEntidadeUsuario();
+
     this.userService.create(this.newUser).subscribe((userCreated: User) => {
       this.alerts.setMessage('Usuário cadastrado com sucesso!','success');
     });
     
     this.accountService.login(this.f.email.value, this.f.password.value)
     this.redirect();
+  }
+
+  carregarEntidadeUsuario(){
+    this.newUser.firstName = this.f.firstName.value;
+    this.newUser.lastName = this.f.lastName.value;
+    this.newUser.document = this.f.document.value;
+    this.newUser.email = this.f.email.value;
+    this.newUser.password = this.f.password.value;
+    this.newUser.idActive = true;
   }
 
   async redirect(){

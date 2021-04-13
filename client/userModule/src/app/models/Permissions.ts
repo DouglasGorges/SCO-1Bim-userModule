@@ -1,9 +1,12 @@
+import { User } from "./User";
+import { Component } from "./Component";
+
 export class Permissions {
     _id?: string;
-    idUser: number;
-    idComponent: number;
-    idUserCreate: number;
+    user: User;
+    component: Component;
+    userCreate: User;
     createdAt: Date;
-    idUserInactivate?: number;
+    userInactivate?: User;
     inactivatedAt?: Date;
 };
