@@ -10,30 +10,39 @@ export default class ConnectionController {
   }
 
   async create(req: Request, res: Response) {
+    const { firstName, lastName, document, email, password, idActive } = req.body
 
-    const {
-      firstname,
-      lastname,
-      document,
-      email,
-      password,
-      idActive
-    } = req.body
+    const userValidate = await db('users')
+      .where(function () {
+        this.where('email', email)
+      })
+      .orWhere('document', document)
+
+    if (userValidate.length > 0) {
+      return res.status(406).json({
+        message: 'User already exists!'
+      })
+    }
 
     const trx = await db.transaction()
 
     try {
 
       const insertUsers = await trx('users').insert({
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         document,
         email,
         password,
         idActive
       })
 
-      console.log(insertUsers)
+      const idUser = insertUsers[0]
+
+      const insertPermissions = await trx('permissions').insert({
+        idUser,
+        idComponent: 1
+      })
 
       await trx.commit()
 
