@@ -62,10 +62,23 @@ export class CreateUserComponent implements OnInit {
 
     this.userService.create(this.newUser).subscribe((userCreated: User) => {
       this.alerts.setMessage('Usuário cadastrado com sucesso!','success');
+      
+      if(!this.accountService.isLogged){
+        this.delay(10000)
+        this.accountService.login(this.newUser.email, this.newUser.password)
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    this.loading = false;
+                },
+                error: error => {
+                    this.alerts.setMessage("Erro no login automático. Entre novamente.", 'error');
+                    this.loading = false;
+                }
+            });
+      }
+      this.redirect();
     });
-    
-    this.accountService.login(this.f.email.value, this.f.password.value)
-    this.redirect();
   }
 
   carregarEntidadeUsuario(){

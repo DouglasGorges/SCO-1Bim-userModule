@@ -4,9 +4,9 @@
     </span>
     <div *ngIf="isLogged == true">
       <div class="mx-auto px-4">
-          <p class="mb-0 f_400">Você está logado como {{user.firstName}} {{user.lastName}}</p>
+          <p class="mb-0 f_400">Olá, {{user.firstName}}</p>
       </div>
-      <a mat-list-item (click)="logout()">
+      <a mat-list-item (click)="logout()" class="px-4" style="float: right;">
         <span class="material-icons">
             logout
         </span>
