@@ -8,7 +8,7 @@ class PermissionsSchema extends Schema {
     this.create('permissions', (table) => {
       table.increments()
       table.integer('idUser')
-        .notNullable()
+        .unsigned()
         .references('id')
         .inTable('users')
         .unique()
