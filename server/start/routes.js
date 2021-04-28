@@ -16,10 +16,20 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+// User Routes
+Route.post('/user/register', 'AuthController.register')
+Route.post('/user/authenticate', 'AuthController.authenticate')
 
-Route.post('/register', 'AuthController.register')
-Route.post('/authenticate', 'AuthController.authenticate')
+// Actor Routes
+Route.post('/actor/register', 'ActorController.register').middleware(['auth'])
+
+// Address Routes
+Route.post('/address', 'AddressController.register').middleware(['auth'])
+
+// Product Routes
+Route.post('/product/register', 'ProductController.register').middleware(['auth'])
+
+// Category Routes
+Route.post('/category/register', 'CategoryController.register').middleware(['auth'])
+
 Route.get('/app', 'AppController.index').middleware(['auth'])

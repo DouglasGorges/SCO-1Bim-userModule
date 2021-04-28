@@ -7,10 +7,6 @@ class ActorSchema extends Schema {
   up() {
     this.create('actors', (table) => {
       table.increments()
-      table.integer('countryId')
-        .unsigned()
-        .references('id')
-        .inTable('countries')
       table.string('name', 256).notNullable()
       table.string('oin', 32).notNullable()
       table.integer('phone', 24).notNullable()

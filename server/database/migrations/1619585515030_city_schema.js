@@ -3,14 +3,14 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class StatesSchema extends Schema {
+class CitySchema extends Schema {
   up() {
-    this.create('states', (table) => {
+    this.create('cities', (table) => {
       table.increments()
-      table.integer('countryId')
+      table.integer('stateId')
         .unsigned()
         .references('id')
-        .inTable('countries')
+        .inTable('states')
       table.string('name', 254).notNullable().unique()
       table.string('symbol', 120).notNullable().unique()
       table.timestamps()
@@ -18,8 +18,8 @@ class StatesSchema extends Schema {
   }
 
   down() {
-    this.drop('states')
+    this.drop('cities')
   }
 }
 
-module.exports = StatesSchema
+module.exports = CitySchema
