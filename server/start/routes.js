@@ -21,15 +21,25 @@ Route.post('/user/register', 'AuthController.register')
 Route.post('/user/authenticate', 'AuthController.authenticate')
 
 // Actor Routes
-Route.post('/actor/register', 'ActorController.register').middleware(['auth'])
+Route.resource('actor', 'ActorController').apiOnly().middleware(['auth'])
 
 // Address Routes
 Route.post('/address', 'AddressController.register').middleware(['auth'])
 
 // Product Routes
-Route.post('/product/register', 'ProductController.register').middleware(['auth'])
+Route.resource('product', 'ProductController').apiOnly().middleware(['auth'])
 
 // Category Routes
-Route.post('/category/register', 'CategoryController.register').middleware(['auth'])
+Route.resource('category', 'CategoryController').apiOnly().middleware(['auth'])
 
-Route.get('/app', 'AppController.index').middleware(['auth'])
+// Transaction Routes
+Route.resource('transaction', 'TransactionController').apiOnly().middleware(['auth'])
+
+// Transaction Item Routes
+Route.resource('transactionItem', 'TransactionItemController').apiOnly().middleware(['auth'])
+
+// Lot Routes
+Route.resource('lot', 'LotController').apiOnly().middleware(['auth'])
+
+// Measurement Unit Routes
+Route.resource('measurement', 'MeasurementUnitController').apiOnly().middleware(['auth'])

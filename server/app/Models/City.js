@@ -4,8 +4,8 @@
 const Model = use('Model')
 
 class City extends Model {
-  state() {
-    return this.hasMany('App/Models/State')
+  actor() {
+    return this.hasMany('App/Models/Actor')
   }
 }
 
