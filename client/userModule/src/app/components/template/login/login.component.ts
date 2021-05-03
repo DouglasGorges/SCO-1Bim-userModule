@@ -5,7 +5,7 @@ import { AlertsService } from 'angular-alert-module';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '../../../services/account.service';
-import { User } from './../../../models/User';
+import { Actor } from './../../../models/Actor';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
-  user: User;
+  actor: Actor;
 
   constructor(
     private formBuilder: FormBuilder,

@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-sm-12 px-4 py-3">
+      <form class="px-4 py-3 border" [formGroup]="form"  (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <p>
+              <mat-form-field appearance="outline" class=" col-12">
+                <mat-label>Fabricante</mat-label>
+                <input class="form-control" matInput placeholder="Fabricante" type="text" formControlName="manufacturer" [ngClass]="{ 'is-invalid': submitted && f.manufacturer.errors }"/>
+              </mat-form-field>
+          </p>
+          <p>
+              <mat-form-field appearance="outline" class=" col-12">
+                <mat-label>Descrição</mat-label>
+                <input class="form-control" matInput placeholder="Descrição" type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+              </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>Descrição Breve</mat-label>
+              <input class="form-control" matInput placeholder="Descrição Breve" type="text" formControlName="label" [ngClass]="{ 'is-invalid': submitted && f.label.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>Código</mat-label>
+              <input class="form-control" matInput placeholder="Código" type="text" formControlName="ean" [ngClass]="{ 'is-invalid': submitted && f.ean.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>Preço de Venda</mat-label>
+              <input class="form-control" matInput placeholder="Preço de Venda" type="text" formControlName="retailPrice" [ngClass]="{ 'is-invalid': submitted && f.retailPrice.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Unidade de Medida</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let measurementItem of measurementUnits" [value]="measurementItem" formControlName="measurementUnit" [ngClass]="{ 'is-invalid': submitted && f.measurementUnit.errors }">
+                    {{measurementItem.symbol}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Categoria</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let categoryItem of categories" [value]="categoryItem" formControlName="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                    {{categoryItem.description}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </p>
+          <div class=" col-12">
+              <button mat-raised-button routerLink="/">Cancelar</button>
+              <button mat-raised-button color="primary" type="submit" style="float: right;"><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Cadastrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

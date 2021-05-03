@@ -8,7 +8,14 @@ import { AlertsModule } from 'angular-alert-module';
 import { MatBreadcrumbModule } from "mat-breadcrumb";
 
 import { AppComponent } from './app.component';
-import { CreateUserComponent } from './views/create-user/create-user.component';
+import { HomeComponent } from './views/home/home.component';
+import { CreateActorComponent } from './views/create/create-actor/create-actor.component';
+import { CreateProductComponent } from './views/create/create-product/create-product.component';
+import { TransBuyComponent } from './views/transactions/trans-buy/trans-buy.component';
+import { TransSellComponent } from './views/transactions/trans-sell/trans-sell.component';
+import { StorageReportComponent } from './views/reports/storage-report/storage-report.component';
+import { PurchasesReportComponent } from './views/reports/purchases-report/purchases-report.component';
+import { SalesReportComponent } from './views/reports/sales-report/sales-report.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 
@@ -33,7 +40,6 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
 import { LoginComponent } from './components/template/login/login.component';
-import { HomeComponent } from './views/home/home.component';
 import { NavComponent } from './components/template/nav/nav.component';
 registerLocaleData(localePt);
 
@@ -45,12 +51,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    CreateUserComponent,
-    HeaderComponent,
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    HeaderComponent,
+    CreateActorComponent,
+    CreateProductComponent,
+    TransBuyComponent,
+    TransSellComponent,
+    StorageReportComponent,
+    PurchasesReportComponent,
+    SalesReportComponent
   ],
   imports: [
     BrowserModule,

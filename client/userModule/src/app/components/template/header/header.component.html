@@ -2,11 +2,37 @@
     <span>
       <a class="link-navegacao" routerLink="/">Sistema Corporativo</a>
     </span>
-    <div *ngIf="isLogged == true">
-      <div class="mx-auto px-4">
-          <p class="mb-0 f_400">Olá, {{user.firstName}}</p>
+
+    <div *ngIf="isLogged == true" class="flexbox">
+      <div ngbDropdown class="d-inline-block px-1">
+        <button class="btn btn-outline-primary" id="dropdownCreate" ngbDropdownToggle>Cadastros</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownCreate">
+          <button ngbDropdownItem (click)="createActor()">Usuário</button>
+          <button ngbDropdownItem (click)="createProduct()">Produto</button>
+        </div>
       </div>
-      <a mat-list-item (click)="logout()" class="px-4" style="float: right;">
+
+      <div ngbDropdown class="d-inline-block px-1">
+        <button class="btn btn-outline-primary" id="dropdownTransactions" ngbDropdownToggle>Transações</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownTransactions">
+          <button ngbDropdownItem (click)="buy()">Compra</button>
+          <button ngbDropdownItem (click)="sell()">Venda</button>
+        </div>
+      </div>
+
+      <div ngbDropdown class="d-inline-block px-1">
+        <button class="btn btn-outline-primary" id="dropdownReports" ngbDropdownToggle>Relatórios</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownReports">
+          <button ngbDropdownItem (click)="storageReport()">Estoque</button>
+          <button ngbDropdownItem (click)="purchasesReport()">Compras</button>
+          <button ngbDropdownItem (click)="salesReport()">Vendas</button>
+        </div>
+      </div>
+
+      <div class="px-4">
+          <p class="mb-0 f_400">Olá, {{actor.firstName}}</p>
+      </div>
+      <a mat-list-item (click)="logout()" class="px-4">
         <span class="material-icons">
             logout
         </span>

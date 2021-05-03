@@ -7,38 +7,38 @@ import { map } from 'rxjs/operators';
 //import { error } from '@angular/compiler/src/util';
 
 import { environment } from '../../environments/environment';
-import { User } from '../models/User';
+import { Actor } from '../models/Actor';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    private user: User;
+    private actor: Actor;
 
     constructor(
         private router: Router,
         private http: HttpClient
         ) {
-            var parsed = JSON.parse(localStorage.getItem('user') || '{}');
+            var parsed = JSON.parse(localStorage.getItem('actor') || '{}');
             if(parsed){
-                this.user = parsed;
+                this.actor = parsed;
             }
         }
 
-    public get userValue(): User {
-        return this.user;
+    public get actorValue(): Actor {
+        return this.actor;
     }
 
     public get isLogged(): boolean {
-        return Object.keys(this.user).length > 0;
+        return Object.keys(this.actor).length > 0;
     }
 
-    login(email: string, password: string): Observable<User> {
-        return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { email, password })
-        .pipe(map(user => {
-            //if(user.idActive){
-                localStorage.setItem('user', JSON.stringify(user));
-                this.user = user;
+    login(email: string, password: string): Observable<Actor> {
+        return this.http.post<Actor>(`${environment.apiUrl}/actors/authenticate`, { email, password })
+        .pipe(map(actor => {
+            //if(actor.inactivated_at == null){
+                localStorage.setItem('actor', JSON.stringify(actor));
+                this.actor = actor;
                 location.reload();
-                return user;
+                return actor;
            // } else {
                 //return error("Usuário inativo.");
            // }
@@ -46,8 +46,8 @@ export class AccountService {
     }
 
     logout() {
-        localStorage.removeItem('user');
-        this.user = new User;
+        localStorage.removeItem('actor');
+        this.actor = new Actor;
         if(this.router.url == '/'){
             this.refresh();
         } else {
@@ -59,38 +59,38 @@ export class AccountService {
         window.location.reload();
     }
 
-    register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+    register(actor: Actor) {
+        return this.http.post(`${environment.apiUrl}/actors/register`, actor);
     }
 
     getAll() {
-        return this.http.get<User[]>(`${environment.apiUrl}/users`);
+        return this.http.get<Actor[]>(`${environment.apiUrl}/actors`);
     }
 
     getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+        return this.http.get<Actor>(`${environment.apiUrl}/actors/${id}`);
     }
 
     update(id: string, params: String) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+        return this.http.put(`${environment.apiUrl}/actors/${id}`, params)
             .pipe(map(x => {
                 // update do usuario no local storage
-                if (id == this.userValue._id) {
+                if (id == this.actorValue._id) {
                     // update no local storage
-                    const user = { ...this.userValue, ...params };
-                    localStorage.setItem('user', JSON.stringify(user));
+                    const actor = { ...this.actorValue, ...params };
+                    localStorage.setItem('actor', JSON.stringify(actor));
 
-                    this.user = user;
+                    this.actor = actor;
                 }
                 return x;
             }));
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`)
+        return this.http.delete(`${environment.apiUrl}/actors/${id}`)
             .pipe(map(x => {
                 // auto logout se o usuario for apagado
-                if (id == this.userValue._id) {
+                if (id == this.actorValue._id) {
                     this.logout();
                 }
                 return x;

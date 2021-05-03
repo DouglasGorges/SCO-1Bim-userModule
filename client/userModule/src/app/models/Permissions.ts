@@ -1,12 +1,12 @@
-import { User } from "./User";
+import { Actor } from "./Actor";
 import { Component } from "./Component";
 
 export class Permissions {
     _id?: string;
-    user: User;
+    actor: Actor;
     component: Component;
-    userCreate: User;
+    actorCreate: Actor;
     createdAt: Date;
-    userInactivate?: User;
+    actorInactivate?: Actor;
     inactivatedAt?: Date;
 };
