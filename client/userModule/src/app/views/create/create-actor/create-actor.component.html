@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-sm-12 px-4 py-3">
+      <form class="px-4 py-3 border" [formGroup]="form"  (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <p>
+              <mat-form-field appearance="outline" class=" col-12">
+                <mat-label>Nome</mat-label>
+                <input class="form-control" matInput placeholder="Nome" type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+              </mat-form-field>
+          </p>
+          <p>
+              <mat-form-field appearance="outline" class=" col-12">
+                <mat-label>Documento</mat-label>
+                <input class="form-control" matInput placeholder="CPF ou CNPJ" type="text" formControlName="document" [ngClass]="{ 'is-invalid': submitted && f.document.errors }"/>
+              </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>Telefone</mat-label>
+              <input class="form-control" matInput placeholder="Telefone" type="text" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>Endereço</mat-label>
+              <input class="form-control" matInput placeholder="Endereço" type="text" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>CEP</mat-label>
+              <input class="form-control" matInput placeholder="CEP" type="text" formControlName="zipCode" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class=" col-12">
+              <mat-label>Cidade</mat-label>
+              <input class="form-control" matInput placeholder="Cidade" type="text" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let personTypeItem of personTypesList" [value]="personTypeItem.value" formControlName="personType" [ngClass]="{ 'is-invalid': submitted && f.personType.errors }">
+                    {{personTypeItem.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </p>
+          <p *ngIf="this.newActor.personType.value == employee">
+            <mat-form-field appearance="fill">
+                <mat-label>Grupo</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let employeeTypeItem of employeeTypeList" [value]="employeeTypeItem.value" formControlName="employeeType" [ngClass]="{ 'is-invalid': submitted && f.employeeType.errors }">
+                    {{employeeTypeItem.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field appearance="outline" class=" col-12">
+                <mat-label>E-mail</mat-label>
+                <input class="form-control" matInput placeholder="E-Mail" type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+              </mat-form-field>
+          </p>
+          <p>
+              <mat-form-field appearance="outline" class=" col-12">
+                <mat-label>Senha</mat-label>
+                <input class="form-control" matInput placeholder="Senha" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+              </mat-form-field>
+          </p>
+          <div class=" col-12">
+              <button mat-raised-button routerLink="/">Cancelar</button>
+              <button mat-raised-button color="primary" type="submit" style="float: right;"><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Cadastrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

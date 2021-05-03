@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { Location, NgLocalization } from '@angular/common';
 
 import { AccountService } from '../../../services/account.service';
-import { User } from './../../../models/User';
+import { Actor } from './../../../models/Actor';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +13,15 @@ import { User } from './../../../models/User';
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean;
-  user: User;
+  actor: Actor;
 
   constructor( 
     private router: Router,
     private location: NgLocalization,
     private accountService: AccountService) { 
-      this.user = this.accountService.userValue;
+      this.actor = this.accountService.actorValue;
       this.isLogged = this.accountService.isLogged;
+      this.isLogged = true; /* TODO DGorges remover */
   }
 
   ngOnInit(): void {
@@ -33,5 +34,34 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.accountService.logout();
   }
+
+  createActor(){
+    this.router.navigateByUrl('/create/actor');
+  }
+  
+  createProduct(){
+
+  }
+
+  buy(){
+
+  }
+
+  sell(){
+
+  }
+  
+  storageReport(){
+
+  }
+  
+  purchasesReport(){
+
+  }
+  
+  salesReport(){
+
+  }
+  
 
 }

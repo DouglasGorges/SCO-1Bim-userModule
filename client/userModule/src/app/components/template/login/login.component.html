@@ -1,46 +1,43 @@
-<form class="py-3 border col-4" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <mat-form-field appearance="outline" class="col-12">
-      <mat-label>E-Mail</mat-label>
-      <input class="form-control" 
-        matInput
-        placeholder="E-Mail"
-        type="email"
-        formControlName="email"
-        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-      /> <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Preencha o e-mail</div>
+<div class="row justify-content-center">
+  <form class="col-md-4 col-sm-12 py-5 border" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>E-Mail</mat-label>
+        <input class="form-control" 
+          matInput
+          placeholder="E-Mail"
+          type="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        /> <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Preencha o e-mail</div>
+      </div>
+        <mat-hint>Insira seu e-mail</mat-hint>
+      </mat-form-field>
     </div>
-      <mat-hint>Insira seu e-mail</mat-hint>
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field appearance="outline" class="col-12">
-      <mat-label>Senha</mat-label>
-      <input
-        matInput class="form-control" 
-        placeholder="Senha"
-        type="password"
-        formControlName="password"
-        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-      /><div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">Preencha a senha</div>
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput class="form-control" 
+          placeholder="Senha"
+          type="password"
+          formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        /><div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Preencha a senha</div>
+      </div>
+        <mat-hint>Insira sua senha</mat-hint>
+      </mat-form-field>
+      <div class="form-group col-12">
+        <button style="float: right;"
+          mat-raised-button
+          color="primary"
+          type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Entrar
+        </button>
+      </div>
     </div>
-      <mat-hint>Insira sua senha</mat-hint>
-    </mat-form-field>
-  </div>
-  <div class="form-group col-12">
-    <button style="float: right;"
-      mat-raised-button
-      color="primary"
-      type="submit"
-    ><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-      Entrar
-    </button>
-  </div>
-  <div class="form-group col-12">
-    <a routerLink="/create/user">
-              Cadastre-se
-          </a>
-  </div>
-</form>
+  </form>
+</div>
