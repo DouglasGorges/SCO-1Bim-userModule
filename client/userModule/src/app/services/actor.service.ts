@@ -20,6 +20,30 @@ export class ActorService {
         return this.http.get<Actor[]>(`${environment.apiUrl}/list/actors`);
     }
 
+    /* TODO DGorges usar depois que conectar no back
+    listActorsbyType(type: String) {
+        return this.http.get<Actor[]>(`${environment.apiUrl}/list/actors/type/${type}`);
+    }*/
+    listActorsbyType(type: String) {
+        let actors: Actor[] = [new Actor];
+        
+        let newActor: Actor = new Actor;
+        newActor.name = type+'-João';
+        
+        actors.push(newActor);
+        
+        let newActor2: Actor = new Actor;
+        newActor2.name = type+'-Maria';
+        
+        actors.push(newActor2);
+        
+        let newActor3: Actor = new Actor;
+        newActor3.name = type+'-Anna';
+        actors.push(newActor3);
+
+        return actors;
+    }
+
     findById(id: String){
         return this.http.get<Actor>(`${environment.apiUrl}/list/actors/${id}`);
     }
@@ -33,6 +57,7 @@ export class ActorService {
     }
 
     create(actor: Actor): Observable<Actor>{
+        console.log(actor.oin)
         return this.http.post<Actor>(`${environment.apiUrl}/create/actors`, actor);
     }
 
