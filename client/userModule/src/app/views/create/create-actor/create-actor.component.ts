@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AlertsService } from 'angular-alert-module';
+import { MatSelectChange } from '@angular/material/select';
 
 import { Actor } from '../../../models/Actor';
 import { City } from '../../../models/City';
@@ -33,11 +34,12 @@ export class CreateActorComponent implements OnInit {
 
   personTypesList: PersonType[] = [
     {value: 'supplier', viewValue: 'Fornecedor'},
+    {value: 'manufacturer', viewValue: 'Fabricante'},
     {value: 'client', viewValue: 'Cliente'},
     {value: 'employee', viewValue: 'Empregado'}
   ];
 
-  employeeTypeList: EmployeeType[] = [
+  employeeTypesList: EmployeeType[] = [
     {value: 'manager', viewValue: 'Gerente'},
     {value: 'technician', viewValue: 'Técnico'},
     {value: 'intern', viewValue: 'Estagiário'}
@@ -48,17 +50,19 @@ export class CreateActorComponent implements OnInit {
     private actorService: ActorService,
     private router: Router,
     private alerts: AlertsService,
-    private accountService: AccountService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      oin: ['', Validators.required],
+      document: ['', Validators.required],
+      phone: ['', Validators.required],
       address: ['', Validators.required],
+      zipCode: ['', Validators.required],
       city: ['', Validators.required],
       personType: ['', Validators.required],
-      employeeType: ['', Validators.required],
+      employeeType: [''],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -83,31 +87,17 @@ export class CreateActorComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-
+    
+    /*
     if (this.form.invalid) {
       this.loading = false;
       return;
-    }
-
+    }*/
+    
     this.carregarEntidadeUsuario();
 
     this.actorService.create(this.newActor).subscribe((actorCreated: Actor) => {
       this.alerts.setMessage('Usuário cadastrado com sucesso!','success');
-      
-      if(!this.accountService.isLogged){
-        this.delay(10000)
-        this.accountService.login(this.newActor.email, this.newActor.password)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.loading = false;
-                },
-                error: error => {
-                    this.alerts.setMessage("Erro no login automático. Entre novamente.", 'error');
-                    this.loading = false;
-                }
-            });
-      }
       this.redirect();
     });
   }
@@ -118,9 +108,8 @@ export class CreateActorComponent implements OnInit {
     this.newActor.phone = this.f.phone.value;
     this.newActor.address = this.f.address.value;
     this.newActor.zipCode = this.f.zipCode.value;
-    this.newActor.city = this.f.city.value;
-    this.newActor.personType = this.f.personType.value;
-    this.newActor.employeeType = this.f.employeeType.value;
+    //this.newActor.city = this.f.city.value;
+    this.newActor.city = new City;
     this.newActor.email = this.f.email.value;
     this.newActor.password = this.f.password.value;
   }
@@ -134,4 +123,13 @@ export class CreateActorComponent implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
+  selectedPersonType(event: MatSelectChange) {
+    this.newActor.personType = event.value;
+    if(this.newActor.personType != 'employee')
+      this.newActor.employeeType = '';
+  }
+
+  selectedEmployeeType(event: MatSelectChange) {
+    this.newActor.employeeType = event.value;
+  }
 }

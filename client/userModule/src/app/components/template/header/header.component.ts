@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   }
   
   createProduct(){
-
+    this.router.navigateByUrl('/create/product');
   }
 
   buy(){
