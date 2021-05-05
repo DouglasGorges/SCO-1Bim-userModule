@@ -13,5 +13,8 @@ export class Actor {
     employeeType: string;
     email: string;
     password: string;
+    createdBy: Actor;
+    inactivatedBy: Actor;
+    inactivatedAt: Date;
     permissions: Permissions[];
 };
