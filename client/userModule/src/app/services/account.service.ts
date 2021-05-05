@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-//import { error } from '@angular/compiler/src/util';
+import { error } from '@angular/compiler/src/util';
 
 import { environment } from '../../environments/environment';
 import { Actor } from '../models/Actor';
@@ -34,14 +34,14 @@ export class AccountService {
     login(email: string, password: string): Observable<Actor> {
         return this.http.post<Actor>(`${environment.apiUrl}/actors/authenticate`, { email, password })
         .pipe(map(actor => {
-            //if(actor.inactivated_at == null){
+            if(actor.inactivatedAt == null){
                 localStorage.setItem('actor', JSON.stringify(actor));
                 this.actor = actor;
                 location.reload();
                 return actor;
-           // } else {
-                //return error("Usuário inativo.");
-           // }
+           } else {
+               return error("Usuário inativo.");
+           }
         }));
     }
 
