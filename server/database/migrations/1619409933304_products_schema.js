@@ -7,13 +7,13 @@ class ProductsSchema extends Schema {
   up() {
     this.create('products', (table) => {
       table.increments()
-      table.integer('manufacturerId').unsigned().references('id').inTable('actor')
+      table.integer('manufacturer_id').unsigned().references('id').inTable('actor')
       table.string('name', 256).notNullable()
       table.string('label', 32).notNullable()
       table.string('ean', 13).notNullable()
       table.integer('retailPrice').notNullable()
-      table.integer('measurementUnitId').unsigned().references('id').inTable('measurementUnits')
-      table.integer('categoryId').unsigned().references('id').inTable('category')
+      table.integer('measurement_unit_id').unsigned().references('id').inTable('measurementUnits')
+      table.integer('category_id').unsigned().references('id').inTable('category')
       table.timestamps()
     })
   }

@@ -12,7 +12,7 @@ class ActorSchema extends Schema {
       table.integer('phone', 24).notNullable()
       table.string('address', 256).notNullable()
       table.string('zipCode', 20).notNullable()
-      table.integer('cityId').unsigned().references('id').inTable('cities')
+      table.integer('city_id').unsigned().references('id').inTable('cities')
       table.string('personType', 64).notNullable()
       table.string('employeeType', 64)
       table.timestamps()

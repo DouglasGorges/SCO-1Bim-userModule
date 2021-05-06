@@ -17,8 +17,8 @@
 const Route = use('Route')
 
 // User Routes
-Route.post('/actor/register', 'AuthController.register')
-Route.post('/actor/authenticate', 'AuthController.authenticate')
+Route.post('/user/register', 'AuthController.register')
+Route.post('/user/authenticate', 'AuthController.authenticate')
 
 // Actor Routes
 Route.resource('actor', 'ActorController').apiOnly().middleware(['auth'])

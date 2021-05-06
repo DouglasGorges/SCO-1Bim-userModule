@@ -8,9 +8,16 @@ class LotController {
     return lot
   }
 
+  async show({ params }) {
+    const lot = await Lot.findOrFail(params.id)
+    await lot.load('transaction_item')
+
+    return lot
+  }
+
   async store({ request }) {
     const data = request.only(
-      ['productId', 'quantityBalance', 'expiryDate']
+      ['product_id', 'quantityBalance', 'expiryDate']
     )
     const lot = await Lot.create(data)
     return lot
@@ -19,7 +26,7 @@ class LotController {
   async update({ params, request }) {
     const lot = await Lot.findOrFail(params.id)
     const data = request.only(
-      ['productId', 'quantityBalance', 'expiryDate']
+      ['product_id', 'quantityBalance', 'expiryDate']
     )
 
     lot.merge(data)

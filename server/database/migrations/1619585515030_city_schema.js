@@ -7,7 +7,7 @@ class CitySchema extends Schema {
   up() {
     this.create('cities', (table) => {
       table.increments()
-      table.integer('stateId')
+      table.integer('state_id')
         .unsigned()
         .references('id')
         .inTable('states')

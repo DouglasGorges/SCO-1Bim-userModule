@@ -11,7 +11,7 @@ class ActorController {
 
   async store({ request }) {
     const data = request.only(
-      ['name', 'oin', 'phone', 'address', 'zipCode', 'cityId', 'personType', 'employeeType']
+      ['name', 'oin', 'phone', 'address', 'zipCode', 'city_id', 'personType', 'employeeType']
     )
 
     const actor = await Actor.create(data)
@@ -21,7 +21,7 @@ class ActorController {
   async update({ params, request, response }) {
     const actor = await Actor.findOrFail(params.id)
     const data = request.only(
-      ['name', 'oin', 'phone', 'address', 'zipCode', 'cityId', 'personType', 'employeeType']
+      ['name', 'oin', 'phone', 'address', 'zipCode', 'city_id', 'personType', 'employeeType']
     )
 
     actor.merge(data)

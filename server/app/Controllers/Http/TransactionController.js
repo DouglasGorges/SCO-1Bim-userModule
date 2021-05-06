@@ -8,9 +8,17 @@ class TransactionController {
     return transaction
   }
 
+  async show({ params }) {
+    const transaction = await Transaction.findOrFail(params.id)
+
+    await transaction.load('transactionItem')
+
+    return transaction
+  }
+
   async store({ request }) {
     const data = request.only(
-      ['establishmentInId', 'establishmentOutId', 'transactionType', 'employeeId', 'documentType', 'date', 'totalPrice']
+      ['establishment_in_id', 'establishment_out_id', 'transactionType', 'employee_id', 'documentType', 'date', 'totalPrice']
     )
     const transaction = await Transaction.create(data)
     return transaction
@@ -19,7 +27,7 @@ class TransactionController {
   async update({ params, request }) {
     const transaction = await Transaction.findOrFail(params.id)
     const data = request.only(
-      ['establishmentInId', 'establishmentOutId', 'transactionType', 'employeeId', 'documentType', 'date', 'totalPrice']
+      ['establishment_in_id', 'establishment_out_id', 'transactionType', 'employee_id', 'documentType', 'date', 'totalPrice']
     )
     transaction.merge(data)
     transaction.save()

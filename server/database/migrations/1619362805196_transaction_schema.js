@@ -7,10 +7,10 @@ class TransactionSchema extends Schema {
   up() {
     this.create('transactions', (table) => {
       table.increments()
-      table.integer('establishmentInId').unsigned().references('id').inTable('actor')
-      table.integer('establishmentOutId').unsigned().references('id').inTable('actor')
+      table.integer('establishment_in_id').unsigned().references('id').inTable('actor')
+      table.integer('establishment_out_id').unsigned().references('id').inTable('actor')
       table.integer('transactionType').notNullable()
-      table.integer('employeeId').unsigned().references('id').inTable('actor')
+      table.integer('employee_id').unsigned().references('id').inTable('actor')
       table.string('documentType').notNullable()
       table.date('date').notNullable()
       table.integer('totalPrice').notNullable()

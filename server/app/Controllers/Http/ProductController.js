@@ -10,7 +10,7 @@ class ProductController {
 
   async store({ request }) {
     const data = request.only(
-      ['manufacturerId', 'name', 'label', 'ean', 'retailPrice', 'measurementUnitId', 'categoryId']
+      ['manufacturer_id', 'name', 'label', 'ean', 'retailPrice', 'measurement_unit_id', 'category_id']
     )
 
     const product = await Product.create(data)
@@ -20,7 +20,7 @@ class ProductController {
   async update({ params, request, response }) {
     const product = await Product.findOrFail(params.id)
     const data = request.only(
-      ['manufacturerId', 'name', 'label', 'ean', 'retailPrice', 'measurementUnitId', 'categoryId']
+      ['manufacturer_id', 'name', 'label', 'ean', 'retailPrice', 'measurement_unit_id', 'category_id']
     )
     product.merge(data)
     product.save()

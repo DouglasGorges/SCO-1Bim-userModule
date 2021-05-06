@@ -7,7 +7,7 @@ class LotSchema extends Schema {
   up() {
     this.create('lots', (table) => {
       table.increments()
-      table.integer('productId').unsigned().references('id').inTable('products')
+      table.integer('product_id').unsigned().references('id').inTable('products')
       table.integer('quantityBalance').notNullable()
       table.date('expiryDate').notNullable()
       table.timestamps()

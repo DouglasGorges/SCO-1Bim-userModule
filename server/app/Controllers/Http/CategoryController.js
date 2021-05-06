@@ -9,7 +9,7 @@ class CategoryController {
   }
 
   async store({ request }) {
-    const data = request.only(['description', 'categoryId'])
+    const data = request.only(['description', 'category_id'])
 
     const category = await Category.create(data)
     return category
@@ -17,7 +17,7 @@ class CategoryController {
 
   async update({ params, request }) {
     const category = await Category.findOrFail(params.id)
-    const data = request.only(['description', 'categoryId'])
+    const data = request.only(['description', 'category_id'])
 
     category.merge(data)
     category.save()

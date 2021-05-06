@@ -7,8 +7,8 @@ class TransactionItemsSchema extends Schema {
   up() {
     this.create('transaction_items', (table) => {
       table.increments()
-      table.integer('transactionId').unsigned().references('id').inTable('transaction')
-      table.integer('lotId').unsigned().references('id').inTable('lot')
+      table.integer('transaction_id').unsigned().references('id').inTable('transaction')
+      table.integer('lot_id').unsigned().references('id').inTable('lot')
       table.integer('unitPrice').notNullable()
       table.integer('quantity').notNullable()
       table.integer('subTotalPrice').notNullable()

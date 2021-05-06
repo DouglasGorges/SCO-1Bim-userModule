@@ -8,8 +8,8 @@ class Transaction extends Model {
     return this.hasMany('App/Models/Actor')
   }
 
-  transaction_items() {
-    return this.belongsTo('App/Models/TransactionItems')
+  transactionItem() {
+    return this.belongsTo('App/Models/TransactionItem')
   }
 }
 

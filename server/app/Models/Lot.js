@@ -4,8 +4,8 @@
 const Model = use('Model')
 
 class Lot extends Model {
-  transaction_items() {
-    return this.hasOne('App/Models/TransactionItems')
+  transaction_item() {
+    return this.hasOne('App/Models/TransactionItem')
   }
 
   product() {

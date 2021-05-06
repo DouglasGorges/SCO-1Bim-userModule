@@ -7,14 +7,14 @@ class PermissionsSchema extends Schema {
   up() {
     this.create('permissions', (table) => {
       table.increments()
-      table.integer('idActor')
+      table.integer('user_id')
         .unsigned()
         .references('id')
-        .inTable('actors')
+        .inTable('user')
         .unique()
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      table.integer('idComponent').notNullable()
+      table.integer('component_id').notNullable()
       table.timestamps()
     })
   }

@@ -13,12 +13,12 @@ class AddressController {
       symbol: data.countries.symbol
     })
     const state = await State.create({
-      countryId: country.id,
+      country_id: country.id,
       name: data.states.name,
       symbol: data.states.symbol
     })
     const city = await City.create({
-      stateId: state.id,
+      state_id: state.id,
       name: data.cities.name,
       symbol: data.cities.symbol
     })
