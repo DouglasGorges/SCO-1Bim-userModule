@@ -82,6 +82,9 @@ export class CreateActorComponent implements OnInit {
     employeeType: "",
     email: "",
     password: "",
+    createdBy: new Actor,
+    inactivatedBy: new Actor,
+    inactivatedAt: new Date,
     permissions: []
   }
 
