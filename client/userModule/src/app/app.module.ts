@@ -47,11 +47,6 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
-
-const maskConfig: Partial<IConfig> = {
-  validation: false,
-};
 
 @NgModule({
   declarations: [
@@ -92,7 +87,6 @@ const maskConfig: Partial<IConfig> = {
     LayoutModule,
     MatSnackBarModule,
     AlertsModule.forRoot(),
-    NgxMaskModule.forRoot(maskConfig),
     NgbModule,
     ReactiveFormsModule,
     MatBreadcrumbModule
