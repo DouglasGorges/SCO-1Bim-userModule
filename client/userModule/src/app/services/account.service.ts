@@ -32,7 +32,7 @@ export class AccountService {
     }
 
     login(email: string, password: string): Observable<Actor> {
-        return this.http.post<Actor>(`${environment.apiUrl}/actors/authenticate`, { email, password })
+        return this.http.post<Actor>(`${environment.apiUrl}/user/authenticate`, { email, password })
         .pipe(map(actor => {
             //if(actor.inactivatedAt == null){
                 localStorage.setItem('actor', JSON.stringify(actor));
@@ -60,19 +60,19 @@ export class AccountService {
     }
 
     register(actor: Actor) {
-        return this.http.post(`${environment.apiUrl}/actors/register`, actor);
+        return this.http.post(`${environment.apiUrl}/user/register`, actor);
     }
 
     getAll() {
-        return this.http.get<Actor[]>(`${environment.apiUrl}/actors`);
+        return this.http.get<Actor[]>(`${environment.apiUrl}/user`);
     }
 
     getById(id: string) {
-        return this.http.get<Actor>(`${environment.apiUrl}/actors/${id}`);
+        return this.http.get<Actor>(`${environment.apiUrl}/user/${id}`);
     }
 
     update(id: string, params: String) {
-        return this.http.put(`${environment.apiUrl}/actors/${id}`, params)
+        return this.http.put(`${environment.apiUrl}/user/${id}`, params)
             .pipe(map(x => {
                 // update do usuario no local storage
                 if (id == this.actorValue._id) {
@@ -87,7 +87,7 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/actors/${id}`)
+        return this.http.delete(`${environment.apiUrl}/user/${id}`)
             .pipe(map(x => {
                 // auto logout se o usuario for apagado
                 if (id == this.actorValue._id) {

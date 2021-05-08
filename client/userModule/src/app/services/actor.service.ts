@@ -17,7 +17,7 @@ export class ActorService {
         ){}
 
     listActors() {
-        return this.http.get<Actor[]>(`${environment.apiUrl}/list/actors`);
+        return this.http.get<Actor[]>(`${environment.apiUrl}/actor/index`);
     }
 
     /* TODO DGorges usar depois que conectar no back
@@ -45,27 +45,27 @@ export class ActorService {
     }
 
     findById(id: String){
-        return this.http.get<Actor>(`${environment.apiUrl}/list/actors/${id}`);
+        return this.http.get<Actor>(`${environment.apiUrl}/actor/${id}`);
     }
 
     findByEmail(email: String){
-        return this.http.get<Actor>(`${environment.apiUrl}/list/actors//${email}`);
+        return this.http.get<Actor>(`${environment.apiUrl}/actor//${email}`);
     }
 
     findByDocument(document: String){
-        return this.http.get<Actor>(`${environment.apiUrl}/lista/actors///${document}`);
+        return this.http.get<Actor>(`${environment.apiUrl}/actor///${document}`);
     }
 
     create(actor: Actor): Observable<Actor>{
         console.log(actor.oin)
-        return this.http.post<Actor>(`${environment.apiUrl}/create/actors`, actor);
+        return this.http.post<Actor>(`${environment.apiUrl}/actor`, actor);
     }
 
     update(actor: Actor,  id: String): Observable<Actor>{
-        return this.http.post<Actor>(`${environment.apiUrl}/create/actors/update/${id}`, actor);
+        return this.http.put<Actor>(`${environment.apiUrl}/create/actor/${id}`, actor);
     }
 
     delete(id: String): Observable<Actor>{
-        return this.http.delete<Actor>(`${environment.apiUrl}/create/actors/delete/${id}`);
+        return this.http.delete<Actor>(`${environment.apiUrl}/create/actor/${id}`);
     }
 }

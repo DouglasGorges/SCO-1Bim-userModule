@@ -15,42 +15,42 @@ export class ProductService {
         ){}
 
     listProducts() {
-        return this.http.get<Product[]>(`${environment.apiUrl}/list/products`);
+        return this.http.get<Product[]>(`${environment.apiUrl}/product`);
     }
 
     findById(id: String){
-        return this.http.get<Product>(`${environment.apiUrl}/list/products/byId/${id}`);
+        return this.http.get<Product>(`${environment.apiUrl}/product/${id}`);
     }
 
     findByManufacturer(param: String) {
-        return this.http.get<Product[]>(`${environment.apiUrl}/list/products/byManuf/${param}`);
+        return this.http.get<Product[]>(`${environment.apiUrl}/product/byManuf/${param}`);
     }
 
     findByName(param: String) {
-        return this.http.get<Product[]>(`${environment.apiUrl}/list/products/byName/${param}`);
+        return this.http.get<Product[]>(`${environment.apiUrl}/product/byName/${param}`);
     }
 
     findByLabel(param: String) {
-        return this.http.get<Product[]>(`${environment.apiUrl}/list/products/byLabel/${param}`);
+        return this.http.get<Product[]>(`${environment.apiUrl}/product/byLabel/${param}`);
     }
 
     findByEan(param: String) {
-        return this.http.get<Product[]>(`${environment.apiUrl}/list/products/byEan/${param}`);
+        return this.http.get<Product[]>(`${environment.apiUrl}/product/byEan/${param}`);
     }
 
     findByCategory(param: String) {
-        return this.http.get<Product[]>(`${environment.apiUrl}/list/products/byCate/${param}`);
+        return this.http.get<Product[]>(`${environment.apiUrl}/product/byCate/${param}`);
     }
 
     create(product: Product): Observable<Product>{
-        return this.http.post<Product>(`${environment.apiUrl}/create/products`, product);
+        return this.http.post<Product>(`${environment.apiUrl}/product`, product);
     }
 
     update(product: Product,  id: String): Observable<Product>{
-        return this.http.post<Product>(`${environment.apiUrl}/create/products/update/${id}`, product);
+        return this.http.put<Product>(`${environment.apiUrl}/product/${id}`, product);
     }
 
     delete(id: String): Observable<Product>{
-        return this.http.delete<Product>(`${environment.apiUrl}/create/products/delete/${id}`);
+        return this.http.delete<Product>(`${environment.apiUrl}/product/${id}`);
     }
 }
