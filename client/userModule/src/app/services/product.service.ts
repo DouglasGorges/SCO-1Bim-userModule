@@ -43,6 +43,7 @@ export class ProductService {
     }
 
     create(product: Product): Observable<Product>{
+        console.log(product.ean)
         return this.http.post<Product>(`${environment.apiUrl}/product`, product);
     }
 

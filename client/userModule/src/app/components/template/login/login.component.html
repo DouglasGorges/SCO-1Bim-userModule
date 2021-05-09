@@ -1,9 +1,10 @@
 <div class="row justify-content-center">
-  <form class="col-md-4 col-sm-12 py-5 border" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="col-md-3 col-sm-12 py-3 border" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
+      <label>Entrar no Sistema</label>
       <mat-form-field appearance="outline" class="col-12">
         <mat-label>E-Mail</mat-label>
-        <input class="form-control" 
+        <input 
           matInput
           placeholder="E-Mail"
           type="email"
@@ -19,7 +20,7 @@
       <mat-form-field appearance="outline" class="col-12">
         <mat-label>Senha</mat-label>
         <input
-          matInput class="form-control" 
+          matInput
           placeholder="Senha"
           type="password"
           formControlName="password"

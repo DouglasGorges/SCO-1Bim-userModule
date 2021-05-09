@@ -80,11 +80,7 @@ export class CreateProductComponent implements OnInit {
     onSubmit() {
       this.loading = true;
   
-      console.log(this.form.invalid)
-      if (this.form.invalid) {
-        this.loading = false;
-        return;
-      }
+
   
       this.carregarProductEntity();
   
