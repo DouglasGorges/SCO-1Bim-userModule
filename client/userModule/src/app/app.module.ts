@@ -47,6 +47,10 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TransReturnComponent } from './views/transactions/trans-return/trans-return.component';
+import { TransLostComponent } from './views/transactions/trans-lost/trans-lost.component';
+import { TransAdjustmentComponent } from './views/transactions/trans-adjustment/trans-adjustment.component';
+import { TransDialogNewItemComponent } from './views/transactions/dialogs/trans-dialog-new-item/trans-dialog-new-item.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +66,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     TransSellComponent,
     StorageReportComponent,
     PurchasesReportComponent,
-    SalesReportComponent
+    SalesReportComponent,
+    TransReturnComponent,
+    TransLostComponent,
+    TransAdjustmentComponent,
+    TransDialogNewItemComponent
   ],
   imports: [
     BrowserModule,

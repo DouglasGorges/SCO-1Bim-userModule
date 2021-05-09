@@ -33,6 +33,7 @@ export class CreateActorComponent implements OnInit {
   form: FormGroup;
 
   personTypesList: PersonType[] = [
+    {value: 'establishment', viewValue: 'Estabelecimento'},
     {value: 'supplier', viewValue: 'Fornecedor'},
     {value: 'manufacturer', viewValue: 'Fabricante'},
     {value: 'client', viewValue: 'Cliente'},

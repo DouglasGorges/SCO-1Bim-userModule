@@ -51,6 +51,18 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/trans/sell');
   }
   
+  return(){
+    this.router.navigateByUrl('/trans/return');
+  }
+  
+  lost(){
+    this.router.navigateByUrl('/trans/lost');
+  }
+  
+  adjustment(){
+    this.router.navigateByUrl('/trans/adjustment');
+  }
+  
   storageReport(){
     this.router.navigateByUrl('/report/storage');
     

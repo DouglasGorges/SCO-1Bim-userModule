@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Adicionar Item</button>
+</div>
+
+
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        Novo Item
+    </h4>
+</div>
+<p>
+    <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Produto</mat-label>
+        <mat-select>
+        <mat-option *ngFor="let productItem of products" [value]="productItem" formControlName="product"  [ngClass]="{ 'is-invalid': submitted && f.product.errors }" ngDefaultControl>
+            {{productItem.name}}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Data de Validade</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="expiryDate" [ngClass]="{ 'is-invalid': submitted && f.expiryDate.errors }">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <md-input-container appearance="outline" class="col-12">
+        <mat-label>Preço Unitário</mat-label>
+        <input mdInput type="number" formControlName="unitPrice" [ngClass]="{ 'is-invalid': submitted && f.retailPrice.errors }"/>
+    </md-input-container>
+    <md-input-container appearance="outline" class="col-12">
+        <mat-label>Quantidade</mat-label>
+        <input mdInput type="number" formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"/>
+    </md-input-container>
+</p>
+<div class="modal-footer">
+    <button *ngIf="isStaff == false" type="button" class="btn btn-primary" (click)="newItem()">Salvar</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close()">Fechar</button>
+</div>
