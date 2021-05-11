@@ -6,6 +6,7 @@ import { MatSelectChange } from '@angular/material/select';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Actor } from '../../../models/Actor';
@@ -17,7 +18,8 @@ import { TransactionItens } from 'src/app/models/TransactionItens';
 import { ActorService } from '../../../services/actor.service';
 import { TransactionService } from '../../../services/transaction.service';
 import { AccountService } from '../../../services/account.service';
-import { CategoryService } from '../../../services/category.service';
+import { TransactionItemService } from '../../../services/transaction-item.service';
+import { Lot } from 'src/app/models/Lot';
 
 @Component({
   selector: 'app-trans-buy',
@@ -51,6 +53,7 @@ export class TransBuyComponent implements AfterViewInit {
     private formBuilder: FormBuilder,
     private actorService: ActorService,
     private transactionService: TransactionService,
+    private transactionItemService: TransactionItemService,
     private accountService: AccountService,
     private modalService: NgbModal,
     public dialog: MatDialog,
@@ -106,9 +109,20 @@ export class TransBuyComponent implements AfterViewInit {
       }
   
       this.carregarTransactionEntity();
+
+      let transItemToPersist: TransactionItens[] = [];
   
       this.transactionService.create(this.newTransaction).subscribe((transCreated: Transaction) => {
+
+        this.trans_itens.forEach(function (item) {
+          item.transaction = transCreated;
+          transItemToPersist.push(item);
+        });
         this.alerts.setMessage('Compra registrada com sucesso!','success');
+      });
+      
+      this.transactionItemService.create(transItemToPersist).subscribe((transItemCreated: TransactionItens) => {
+        this.alerts.setMessage('Itens da compra registrados com sucesso!','success');
         this.redirect();
       });
     }
@@ -139,16 +153,24 @@ export class TransBuyComponent implements AfterViewInit {
 
     openNewItem(): void {
       const dialogRef = this.dialog.open(TransDialogNewItemComponent, {
-        width: '250px'
+        width: '700px'
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        adicionarItem(result);
+        
+        let lot = new Lot;
+        lot.expiryDate = result.expiryDate;
+        lot.quantityBalance = result.quantity;
+        lot.product = result.product;
+        
+        let trans_item = new TransactionItens;
+        trans_item.lot = lot;
+        trans_item.unitPrice = result.price;
+        trans_item.quantity = lot.quantityBalance;
+        trans_item.subtotalPrice = (trans_item.unitPrice * trans_item.quantity);
+
+        this.trans_itens.push(trans_item);
       });
-    }
-
-    adicionarItem(a){
-
     }
 
 }

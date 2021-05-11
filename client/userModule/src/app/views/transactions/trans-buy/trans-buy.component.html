@@ -26,9 +26,8 @@
               </button>
           </div>
 
-
-          <div class="mat-elevation-z8 col-12">
-            <table mat-table [dataSource]="dataSource">
+          <div class="mat-elevation-z8 col-12" style="margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" class="col-12">
           
               <!-- Position Column -->
               <ng-container matColumnDef="position">
@@ -73,7 +72,7 @@
 
 
 
-          <div class="col-12">
+          <div class="col-12" style="margin-top: 20px;">
               <button mat-raised-button routerLink="/">Cancelar</button>
               <button mat-raised-button color="primary" type="submit" style="margin-left: 5px"><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Salvar</button>
           </div>

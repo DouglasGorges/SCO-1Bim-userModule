@@ -20,6 +20,7 @@ import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 
 //Módulos do Material
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -35,6 +36,9 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatNativeDateModule } from '@angular/material/core';
 
 //Importar bibliotecas de localição e registrar o idioma
 import localePt from "@angular/common/locales/pt";
@@ -97,7 +101,11 @@ import { TransDialogNewItemComponent } from './views/transactions/dialogs/trans-
     AlertsModule.forRoot(),
     NgbModule,
     ReactiveFormsModule,
-    MatBreadcrumbModule
+    MatBreadcrumbModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatNativeDateModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
