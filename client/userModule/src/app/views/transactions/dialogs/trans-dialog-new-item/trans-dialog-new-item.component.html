@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Adicionar Item</h1>
+<div mat-dialog-content>
+        <mat-form-field appearance="outline" class="col-12">
+            <mat-label>Produto</mat-label>
+            <mat-select>
+            <mat-option *ngFor="let productItem of products" [value]="productItem" [(ngModel)]="data.product" ngDefaultControl>
+                {{productItem.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-12">
+            <mat-label>Data de Validade</mat-label>
+            <input matInput type="date" [(ngModel)]="data.expiryDate" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-12">
+            <mat-label>Preço Unitário</mat-label>
+            <input matInput type="number" [(ngModel)]="data.price"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-12">
+            <mat-label>Quantidade</mat-label>
+            <input matInput type="number" [(ngModel)]="data.quantity"/>
+        </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Adicionar Item</button>
+</div>

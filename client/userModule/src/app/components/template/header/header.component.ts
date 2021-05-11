@@ -42,25 +42,40 @@ export class HeaderComponent implements OnInit {
   createProduct(){
     this.router.navigateByUrl('/create/product');
   }
-
+  
   buy(){
-
+    this.router.navigateByUrl('/trans/buy');
   }
-
+  
   sell(){
-
+    this.router.navigateByUrl('/trans/sell');
+  }
+  
+  return(){
+    this.router.navigateByUrl('/trans/return');
+  }
+  
+  lost(){
+    this.router.navigateByUrl('/trans/lost');
+  }
+  
+  adjustment(){
+    this.router.navigateByUrl('/trans/adjustment');
   }
   
   storageReport(){
-
+    this.router.navigateByUrl('/report/storage');
+    
   }
   
   purchasesReport(){
-
+    this.router.navigateByUrl('/report/purchases');
+    
   }
   
   salesReport(){
-
+    this.router.navigateByUrl('/report/sales');
+    
   }
   
 
