@@ -62,10 +62,10 @@ export class ActorService {
     }
 
     update(actor: Actor,  id: String): Observable<Actor>{
-        return this.http.put<Actor>(`${environment.apiUrl}/create/actor/${id}`, actor);
+        return this.http.put<Actor>(`${environment.apiUrl}/actor/${id}`, actor);
     }
 
     delete(id: String): Observable<Actor>{
-        return this.http.delete<Actor>(`${environment.apiUrl}/create/actor/${id}`);
+        return this.http.delete<Actor>(`${environment.apiUrl}/actor/${id}`);
     }
 }
