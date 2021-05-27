@@ -8,13 +8,14 @@ export class Actor {
     phone: string;
     address: string;
     zipCode: string;
-    city: City;
     personType: string;
     employeeType: string;
     email: string;
     password: string;
-    createdBy: Actor;
+    city: City;
     inactivatedBy: Actor;
-    inactivatedAt: Date;
+    inactivated_at?: Date;
+    createdBy: Actor;
+    created_at?: Date;
     permissions: Permissions[];
 };

@@ -17,17 +17,31 @@
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field appearance="outline" class="col-7">
+            <mat-form-field appearance="outline" class="col-9">
               <mat-label>Endereço</mat-label>
               <input matInput type="text" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="col-2">
+            <mat-form-field appearance="outline" class="col-3">
               <mat-label>CEP</mat-label>
               <input matInput type="text" formControlName="zipCode" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }"/>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="col-3">
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class="col-4">
+              <mat-label>Estado</mat-label>
+              <mat-select (selectionChange)="selectedState($event)">
+                <mat-option *ngFor="let stateItem of states" [value]="stateItem" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }" ngDefaultControl>
+                  {{stateItem.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-4">
               <mat-label>Cidade</mat-label>
-              <input matInput type="text" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"/>
+              <mat-select (selectionChange)="selectedCity($event)">
+                <mat-option *ngFor="let cityItem of cities" [value]="cityItem" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" ngDefaultControl>
+                  {{cityItem.name}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </p>
           <p>
@@ -38,15 +52,15 @@
                     {{personTypeItem.viewValue}}
                   </mat-option>
                 </mat-select>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="col-4" *ngIf="this.newActor.personType === 'employee'">
-                <mat-label>Grupo</mat-label>
-                <mat-select (selectionChange)="selectedEmployeeType($event)">
-                  <mat-option *ngFor="let employeeTypeItem of employeeTypesList" [value]="employeeTypeItem.value" formControlName="employeeType" [ngClass]="{ 'is-invalid': submitted && f.employeeType.errors }" ngDefaultControl>
-                    {{employeeTypeItem.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-4" *ngIf="this.newActor.personType === 'employee'">
+              <mat-label>Grupo</mat-label>
+              <mat-select (selectionChange)="selectedEmployeeType($event)">
+                <mat-option *ngFor="let employeeTypeItem of employeeTypesList" [value]="employeeTypeItem.value" formControlName="employeeType" [ngClass]="{ 'is-invalid': submitted && f.employeeType.errors }" ngDefaultControl>
+                  {{employeeTypeItem.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="outline" class="col-4">

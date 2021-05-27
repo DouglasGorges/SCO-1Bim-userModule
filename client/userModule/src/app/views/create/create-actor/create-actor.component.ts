@@ -7,9 +7,12 @@ import { MatSelectChange } from '@angular/material/select';
 
 import { Actor } from '../../../models/Actor';
 import { City } from '../../../models/City';
+import { State } from '../../../models/State';
 
 import { ActorService } from '../../../services/actor.service';
 import { AccountService } from '../../../services/account.service';
+import { StateService } from '../../../services/state.service';
+import { CityService } from '../../../services/city.service';
 
 interface PersonType {
   value: string;
@@ -31,6 +34,8 @@ export class CreateActorComponent implements OnInit {
   loading = false;
   submitted = false;
   form: FormGroup;
+  states: State[] = [];
+  cities: City[] = [];
 
   personTypesList: PersonType[] = [
     {value: 'establishment', viewValue: 'Estabelecimento'},
@@ -51,7 +56,9 @@ export class CreateActorComponent implements OnInit {
     private actorService: ActorService,
     private router: Router,
     private alerts: AlertsService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private stateService: StateService,
+    private cityService: CityService
   ) { }
 
   ngOnInit() {
@@ -62,11 +69,19 @@ export class CreateActorComponent implements OnInit {
       address: ['', Validators.required],
       zipCode: ['', Validators.required],
       city: ['', Validators.required],
+      state: ['', Validators.required],
       personType: ['', Validators.required],
       employeeType: [''],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+ /* TODO DGorges usar depois que conectar no back
+    this.stateService.listStates().subscribe((list) => {
+      this.states = list; 
+    });*/
+
+    this.states = this.stateService.listStates();
+
   }
 
   // getter para acesso facil aos campos do form
@@ -85,7 +100,7 @@ export class CreateActorComponent implements OnInit {
     password: "",
     createdBy: new Actor,
     inactivatedBy: new Actor,
-    inactivatedAt: new Date,
+    inactivated_at: new Date,
     permissions: []
   }
 
@@ -112,10 +127,10 @@ export class CreateActorComponent implements OnInit {
     this.newActor.phone = this.f.phone.value;
     this.newActor.address = this.f.address.value;
     this.newActor.zipCode = this.f.zipCode.value;
-    //this.newActor.city = this.f.city.value;
-    this.newActor.city = new City;
     this.newActor.email = this.f.email.value;
     this.newActor.password = this.f.password.value;
+
+    this.newActor.createdBy = this.accountService.actorValue;
   }
 
   async redirect(){
@@ -132,8 +147,20 @@ export class CreateActorComponent implements OnInit {
     if(this.newActor.personType != 'employee')
       this.newActor.employeeType = '';
   }
-
+  
   selectedEmployeeType(event: MatSelectChange) {
     this.newActor.employeeType = event.value;
+  }
+  
+  selectedState(event: MatSelectChange) {
+    /* TODO DGorges usar depois que conectar no back
+    this.cityService.listCities(event.value).subscribe((list) => {
+      this.states = list; 
+    });*/
+    this.cities = this.cityService.listCities(event.value);
+  }
+  
+  selectedCity(event: MatSelectChange) {
+    this.newActor.city = event.value;
   }
 }

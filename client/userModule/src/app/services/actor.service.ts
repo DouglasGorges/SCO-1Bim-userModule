@@ -57,7 +57,6 @@ export class ActorService {
     }
 
     create(actor: Actor): Observable<Actor>{
-        console.log(actor.oin)
         return this.http.post<Actor>(`${environment.apiUrl}/actor`, actor);
     }
 
