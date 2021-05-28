@@ -11,4 +11,12 @@
 a:hover {
     color: black;
     text-decoration: underline;
-    }
+}
+
+.btn {
+    background-color: white;
+}
+
+.btn:hover {
+    color: black;
+}

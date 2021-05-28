@@ -32,7 +32,7 @@ export class AccountService {
     }
 
     login(email: string, password: string): Observable<Actor> {
-        return this.http.post<Actor>(`${environment.apiUrl}/user/authenticate`, { email, password })
+        return this.http.post<Actor>(`${environment.apiUrl}/actor/authenticate`, { email, password })
         .pipe(map(actor => {
             //if(actor.inactivatedAt == null){
                 localStorage.setItem('actor', JSON.stringify(actor));
@@ -51,7 +51,7 @@ export class AccountService {
         if(this.router.url == '/'){
             this.refresh();
         } else {
-            this.router.navigate(['']);
+            this.router.navigate(['/']);
         }
     }
 

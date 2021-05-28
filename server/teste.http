@@ -1,0 +1,34 @@
+### LISTAR ACTOR
+GET http://127.0.0.1:3333/actor
+
+
+### CADASTRAR ACTOR
+POST http://127.0.0.1:3333/actor
+Content-Type: application/json
+
+{
+    "id": 4,
+    "name": "Biscoitos Zezé",
+    "oin": "77.583.992/0001-51",
+    "phone": "11955432452",
+    "address": "Rua dos Exercícios, 55",
+    "zipCode": "33987664",
+    "personType": "supplier",
+    "employeeType": null,
+    "email": "sac@zeze.com",
+    "password": "p@ssword",
+    "city_id": 1,
+    "inactivatedBy": null,
+    "inactivated_at": null,
+    "createdBy": 1,
+    "created_at": "2021-05-27 00:01:21"
+}
+
+### LOGIN
+POST http://127.0.0.1:3333/actor/authenticate
+Content-Type: application/json
+
+{
+	"email": "wes.tiago15@gmail.com",
+	"password": "tiago123"
+}

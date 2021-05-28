@@ -1,27 +1,31 @@
 'use strict'
 
-const User = use('App/Models/User')
+const Actor = use('App/Models/Actor')
 const Permission = use('App/Models/Permission')
 
 class AuthController {
   async register({ request }) {
-    const data = request.only(['username', 'email', 'password'])
+    const data = request.only(['email', 'password'])
 
-    const user = await User.create(data)
+    const actor = await Actor.create(data)
     const permission = await Permission.create({
-      user_id: user.id,
+      actor_id: actor.id,
       component_id: 1
     })
 
-    return { user, permission }
+    return { actor, permission }
   }
 
   async authenticate({ request, auth }) {
     const { email, password } = request.all()
-
+/*
     const token = await auth.attempt(email, password)
 
-    return token
+    return token */
+
+      const actor = await Actor.findOrFail(1)
+      return actor
+    
   }
 }
 

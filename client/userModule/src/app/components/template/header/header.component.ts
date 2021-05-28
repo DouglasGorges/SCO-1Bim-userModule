@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     private accountService: AccountService) { 
       this.actor = this.accountService.actorValue;
       this.isLogged = this.accountService.isLogged;
-      this.isLogged = true; /* TODO DGorges remover */
+      //this.isLogged = true; /* TODO DGorges remover */
   }
 
   ngOnInit(): void {

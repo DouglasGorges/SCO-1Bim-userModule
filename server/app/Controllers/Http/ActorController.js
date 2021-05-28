@@ -29,6 +29,12 @@ class ActorController {
     return actor
   }
 
+  async find({ params, response }) {
+    const actor = await Actor.findOrFail(params.id)
+    actor.findOrFail(params.id)
+    return actor
+  }
+
   async destroy({ params, response }) {
     const actor = await Actor.findOrFail(params.id)
     actor.delete()
