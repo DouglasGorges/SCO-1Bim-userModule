@@ -21,60 +21,9 @@ export class ProductService {
         private measureService: MeasureService,
         private http: HttpClient
         ){}
-/* TODO DGorges usar depois que conectar no back
+
     listProducts() {
         return this.http.get<Product[]>(`${environment.apiUrl}/product`);
-    } */
-
-    listProducts() {
-        let products: Product[] = [new Product];
-        
-        let category: Category = new Category;
-        category.description= 'Mercearia';
-        
-        let subCategory: Category = new Category;
-        subCategory.description= 'Enlatados';
-        subCategory.category = category;
-        
-        let subCategory2: Category = new Category;
-        subCategory2.description= 'Ultraprocessados';
-        subCategory2.category = category;
-
-        let actors: Actor[] = this.actorService.listActorsbyType('manuf');
-        let measure: Measure[] = this.measureService.listMeasures();
-
-        let newProduct: Product = new Product;
-        newProduct.category = subCategory;
-        newProduct.ean = '123456';
-        newProduct.label = 'Atum Ralado 127g';
-        newProduct.name = 'Atum Ralado em Óleo 28%';
-        newProduct.manufacturer = actors[0];
-        newProduct.measurementUnit = measure[0];
-        newProduct.retailPrice = 22;
-        products.push(newProduct);
-
-        
-        let newProduct2: Product = new Product;
-        newProduct2.category = subCategory2;
-        newProduct2.ean = '098765';
-        newProduct2.label = 'Ketchup Heinz';
-        newProduct2.name = 'Ketchup Heinz Picante 230g';
-        newProduct2.manufacturer = actors[1];
-        newProduct2.measurementUnit = measure[1];
-        newProduct2.retailPrice = 14;
-        products.push(newProduct2);
-        
-        let newProduct3: Product = new Product;
-        newProduct3.category = subCategory2;
-        newProduct3.ean = '34235784';
-        newProduct3.label = 'Maionese Franks';
-        newProduct3.name = 'Maionese Franks Tradicional 500g';
-        newProduct3.manufacturer = actors[2];
-        newProduct3.measurementUnit = measure[2];
-        newProduct3.retailPrice = 8;
-        products.push(newProduct3);
-
-        return products;
     }
 
     findById(id: String){

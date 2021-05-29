@@ -1,7 +1,7 @@
 import { State } from "./State";
 
 export class City {
-    _id?: string;
+    id?: number;
     state: State;
     name: string;
     symbol: string;

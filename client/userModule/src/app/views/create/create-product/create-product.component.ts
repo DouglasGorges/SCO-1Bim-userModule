@@ -48,10 +48,10 @@ export class CreateProductComponent implements OnInit {
       category: ['', Validators.required]
     });
 
-    /* TODO DGorges usar depois que conectar no back
-    this.acotrService.listActorsbyType('supplier').subscribe((lista) => {
-      this.suppliers = lista;
+    this.actorService.listActorsByPersonType('supplier').subscribe((lista) => {
+      this.manufacturers = lista;
     });
+    /* TODO DGorges usar depois que conectar no back
     this.measureService.listMeasures().subscribe((lista) => {
       this.measurementUnits = lista;
     });
@@ -59,7 +59,6 @@ export class CreateProductComponent implements OnInit {
       this.categories = lista;
     });
     */
-   this.manufacturers = this.actorService.listActorsbyType('supplier');
    this.measurementUnits = this.measureService.listMeasures();
    this.categories = this.categoryService.listCategories();
   }

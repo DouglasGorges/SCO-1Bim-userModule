@@ -72,17 +72,13 @@ export class TransBuyComponent implements AfterViewInit {
       totalPrice: ['', Validators.required]
     });
 
-    /*
-    this.actorService.listActorsbyType('establishment').subscribe((lista) => {
-      this.establishments = lista;
-    });
-    this.actorService.listActorsbyType('supplier').subscribe((lista) => {
+    this.actorService.listActorsByPersonType('supplier').subscribe((lista) => {
       this.suppliers = lista;
     });
-    */
 
-   this.establishments = this.actorService.listActorsbyType('establishment');
-   this.suppliers = this.actorService.listActorsbyType('supplier');
+    this.actorService.listActorsByPersonType('establishment').subscribe((lista) => {
+      this.establishments = lista;
+    });
   }
 
     // getter para acesso facil aos campos do form

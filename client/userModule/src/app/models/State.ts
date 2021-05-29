@@ -1,8 +1,8 @@
 import { Country } from "./Country";
 
 export class State {
-    _id?: string;
-    country: Country;
+    id?: number;
+    country_id: Country;
     name: string;
     symbol: string;
 };

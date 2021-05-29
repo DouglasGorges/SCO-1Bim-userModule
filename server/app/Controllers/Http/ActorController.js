@@ -11,7 +11,7 @@ class ActorController {
 
   async store({ request }) {
     const data = request.only(
-      ['name', 'oin', 'phone', 'address', 'zipCode', 'city_id', 'personType', 'employeeType']
+      ['name', 'oin', 'phone', 'address', 'zipCode', 'personType', 'employeeType', 'email', 'password', 'city_id', 'createdBy']
     )
 
     const actor = await Actor.create(data)
@@ -29,10 +29,12 @@ class ActorController {
     return actor
   }
 
-  async find({ params, response }) {
-    const actor = await Actor.findOrFail(params.id)
-    actor.findOrFail(params.id)
-    return actor
+  async findByEmail({ params, response }) { //Wesleyson Por favor, melhore a busca abaixo. Precisamos buscar o ACTOR atraves do e-mail digitado no login.
+    return await Actor.find(await Actor.query().where('email', '=', params.email).ids())
+  }
+
+  async findByPersonType({ params, response }) {
+    return await Actor.query().where('personType', '=', params.type).fetch()
   }
 
   async destroy({ params, response }) {

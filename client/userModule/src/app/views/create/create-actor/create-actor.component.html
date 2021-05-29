@@ -67,7 +67,7 @@
               <mat-label>E-mail</mat-label>
               <input matInput type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-4" *ngIf="this.newActor.personType === 'employee'">
               <mat-label>Senha</mat-label>
               <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
             </mat-form-field>

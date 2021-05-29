@@ -2,7 +2,7 @@ import { Permissions } from "./Permissions";
 import { City } from "./City";
 
 export class Actor {
-    _id?: string;
+    id?: number;
     name: string;
     oin: string;
     phone: string;
@@ -12,10 +12,10 @@ export class Actor {
     employeeType: string;
     email: string;
     password: string;
-    city: City;
+    city_id: number;
     inactivatedBy: Actor;
     inactivated_at?: Date;
-    createdBy: Actor;
+    createdBy: number;
     created_at?: Date;
     permissions: Permissions[];
 };

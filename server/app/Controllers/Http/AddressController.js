@@ -25,6 +25,21 @@ class AddressController {
 
     return { country, state, city }
   }
+
+  async findStates({ params, response }) {
+    const states = await State.all()
+    return states
+  }
+
+  async findCities({ params, response }) {
+    const states = await City.all()
+    return states
+  }
+
+  async findCitiesByState({ params, response }) {
+    const states = await City.query().where('state_id', '=', params.id).fetch()
+    return states
+  }
 }
 
 module.exports = AddressController

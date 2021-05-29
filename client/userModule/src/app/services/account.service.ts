@@ -33,15 +33,20 @@ export class AccountService {
 
     login(email: string, password: string): Observable<Actor> {
         return this.http.post<Actor>(`${environment.apiUrl}/actor/authenticate`, { email, password })
-        .pipe(map(actor => {
-            //if(actor.inactivatedAt == null){
-                localStorage.setItem('actor', JSON.stringify(actor));
-                this.actor = actor;
+        .pipe(map(token => {
+            if(token != null){
+                localStorage.setItem('token', JSON.stringify(token));
+
+                // Wesleyson Estou armazenando o json do ACTOR, mas não acho uma boa. Como podemos fazer para controlar as telas baseado no Actor logado?
+                this.http.get<Actor>(`${environment.apiUrl}/actor/find/${email}`).subscribe((item) => {
+                    this.actor = item
+                    localStorage.setItem('actor', JSON.stringify(this.actor));
+                });
                 location.reload();
-                return actor;
-           //} else {
-               //return error("Usuário inativo.");
-           //}
+                return token;
+           } else {
+               return token;
+           }
         }));
     }
 
@@ -71,11 +76,11 @@ export class AccountService {
         return this.http.get<Actor>(`${environment.apiUrl}/user/${id}`);
     }
 
-    update(id: string, params: String) {
+    update(id: number, params: String) {
         return this.http.put(`${environment.apiUrl}/user/${id}`, params)
             .pipe(map(x => {
                 // update do usuario no local storage
-                if (id == this.actorValue._id) {
+                if (id == this.actorValue.id) {
                     // update no local storage
                     const actor = { ...this.actorValue, ...params };
                     localStorage.setItem('actor', JSON.stringify(actor));
@@ -86,11 +91,11 @@ export class AccountService {
             }));
     }
 
-    delete(id: string) {
+    delete(id: number) {
         return this.http.delete(`${environment.apiUrl}/user/${id}`)
             .pipe(map(x => {
                 // auto logout se o usuario for apagado
-                if (id == this.actorValue._id) {
+                if (id == this.actorValue.id) {
                     this.logout();
                 }
                 return x;

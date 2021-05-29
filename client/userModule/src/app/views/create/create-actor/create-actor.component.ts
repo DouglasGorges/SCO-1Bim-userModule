@@ -75,12 +75,11 @@ export class CreateActorComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
- /* TODO DGorges usar depois que conectar no back
+    
     this.stateService.listStates().subscribe((list) => {
-      this.states = list; 
-    });*/
+      this.states = list;
+    });
 
-    this.states = this.stateService.listStates();
 
   }
 
@@ -93,12 +92,12 @@ export class CreateActorComponent implements OnInit {
     phone: "",
     address: "",
     zipCode: "",
-    city: new City,
+    city_id: 0,
     personType: "",
     employeeType: "",
     email: "",
     password: "",
-    createdBy: new Actor,
+    createdBy: 0,
     inactivatedBy: new Actor,
     inactivated_at: new Date,
     permissions: []
@@ -116,7 +115,7 @@ export class CreateActorComponent implements OnInit {
     this.carregarEntidadeUsuario();
 
     this.actorService.create(this.newActor).subscribe((actorCreated: Actor) => {
-      this.alerts.setMessage('Usuário cadastrado com sucesso!','success');
+      this.alerts.setMessage(actorCreated.name + ' cadastrado com sucesso!','success');
       this.redirect();
     });
   }
@@ -130,12 +129,12 @@ export class CreateActorComponent implements OnInit {
     this.newActor.email = this.f.email.value;
     this.newActor.password = this.f.password.value;
 
-    this.newActor.createdBy = this.accountService.actorValue;
+    this.newActor.createdBy = (typeof this.accountService.actorValue.id !== 'undefined') ? this.accountService.actorValue.id : 0
   }
 
   async redirect(){
     await this.delay(2000)
-    this.router.navigate(['/']);
+    location.reload();
   }
 
   delay(ms: number) {
@@ -146,6 +145,7 @@ export class CreateActorComponent implements OnInit {
     this.newActor.personType = event.value;
     if(this.newActor.personType != 'employee')
       this.newActor.employeeType = '';
+      this.newActor.password = '';
   }
   
   selectedEmployeeType(event: MatSelectChange) {
@@ -153,14 +153,12 @@ export class CreateActorComponent implements OnInit {
   }
   
   selectedState(event: MatSelectChange) {
-    /* TODO DGorges usar depois que conectar no back
     this.cityService.listCities(event.value).subscribe((list) => {
-      this.states = list; 
-    });*/
-    this.cities = this.cityService.listCities(event.value);
+      this.cities = list;
+    });
   }
   
   selectedCity(event: MatSelectChange) {
-    this.newActor.city = event.value;
+    this.newActor.city_id = event.value.id;
   }
 }

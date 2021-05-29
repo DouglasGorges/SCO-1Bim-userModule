@@ -15,21 +15,7 @@ export class StateService {
         private http: HttpClient
         ){}
 
-    /* TODO DGorges usar depois que conectar no back
     listStates() {
         return this.http.get<State[]>(`${environment.apiUrl}/states`);
-    } */
-
-    listStates() {
-        let states: State[] = [new State];
-
-        for(var i = 0; i < 4; i++){
-            let newState: State = new State;
-            newState.name = 'Estado-' + i;
-            newState.symbol = 'E' + i;
-            states.push(newState);
-        }
-
-        return states;
     }
 }

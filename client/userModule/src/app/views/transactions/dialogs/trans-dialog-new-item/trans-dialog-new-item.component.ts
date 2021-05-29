@@ -32,11 +32,9 @@ export class TransDialogNewItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    /* TODO DGorges usar depois que conectar no back
-    this.acotrService.listActorsbyType('supplier').subscribe((lista) => {
-      this.suppliers = lista;
-    });*/
-    this.products = this.productService.listProducts();
+    this.productService.listProducts().subscribe((lista) => {
+      this.products = lista;
+    });
   }
 
 }
