@@ -18,30 +18,37 @@ const Route = use('Route')
 
 // Actor Routes
 Route.post('/actor/authenticate', 'AuthController.authenticate')
-Route.resource('actor', 'ActorController').apiOnly()//.middleware(['auth'])
-Route.get('/actor/find/:email', 'ActorController.findByEmail')//.middleware(['auth'])
-Route.get('/actor/type/:type', 'ActorController.findByPersonType')//.middleware(['auth'])
+Route.resource('actor', 'ActorController').apiOnly()
+Route.get('/actor/find/:email', 'ActorController.findByEmail')
+Route.get('/actor/type/:type', 'ActorController.findByPersonType')
 
 // Address Routes
-Route.post('/address', 'AddressController.register')//.middleware(['auth'])
-Route.get('/states', 'AddressController.findStates')//.middleware(['auth'])
-Route.get('/cities', 'AddressController.findCities')//.middleware(['auth'])
-Route.get('/states/cities/:id', 'AddressController.findCitiesByState')//.middleware(['auth'])
+Route.post('/address', 'AddressController.register')
+Route.get('/states', 'AddressController.findStates')
+Route.get('/cities', 'AddressController.findCities')
+Route.get('/states/cities/:id', 'AddressController.findCitiesByState')
 
 // Product Routes
-Route.resource('product', 'ProductController').apiOnly()//.middleware(['auth'])
+Route.resource('product', 'ProductController').apiOnly()
 
 // Category Routes
-Route.resource('category', 'CategoryController').apiOnly()//.middleware(['auth'])
+Route.resource('category', 'CategoryController').apiOnly()
 
 // Transaction Routes
-Route.resource('transaction', 'TransactionController').apiOnly()//.middleware(['auth'])
+Route.resource('transaction', 'TransactionController').apiOnly()
 
 // Transaction Item Routes
-Route.resource('transactionItem', 'TransactionItemController').apiOnly()//.middleware(['auth'])
+Route.resource('transactionItem', 'TransactionItemController').apiOnly()
 
 // Lot Routes
-Route.resource('lot', 'LotController').apiOnly()//.middleware(['auth'])
+Route.resource('lot', 'LotController').apiOnly()
 
 // Measurement Unit Routes
-Route.resource('measurement', 'MeasurementUnitController').apiOnly()//.middleware(['auth'])
+Route.resource('measurement', 'MeasurementUnitController').apiOnly()
+
+// Cart Routes
+Route.post('/cart/remove-item', 'CartController.destroy')
+Route.resource('cart', 'CartController').apiOnly()
+
+// Orders Routes
+Route.resource('order', 'OrderController').apiOnly()
